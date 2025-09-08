@@ -108,7 +108,7 @@
       🌸 Adds beauty, warmth & happiness to every home 🏠
     </p>
     <div class="price">Only ₹499 🔥</div>
-    <a class="buy-btn" href="https://wa.me/918888888888?text=Hi%20I%20want%20to%20order%20Lampop%20Lamp%20✨">🛒 Buy Now</a>
+    <a class="buy-btn" href="https://wa.me/919649818067?text=Hi%20I%20want%20to%20order%20Lampop%20Lamp%20✨">🛒 Buy Now</a>
   </section>
 
   <footer>
