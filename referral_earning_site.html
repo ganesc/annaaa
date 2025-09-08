@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>₹9 Referral Earning</title>
+  <title>₹9 Referral Club</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #111;
+      background: #0e0e0e;
       color: #fff;
     }
     .container {
-      max-width: 500px;
+      max-width: 600px;
       margin: 0 auto;
       padding: 2rem;
     }
     h1 {
       color: gold;
       text-align: center;
+      margin-bottom: 2rem;
     }
     .card {
-      background: #222;
+      background: #1b1b1b;
       padding: 1.5rem;
-      border-radius: 12px;
+      border-radius: 16px;
       margin-bottom: 1.5rem;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+    }
+    h2 {
+      margin-bottom: 1rem;
+      color: gold;
     }
     .input-group {
       margin-bottom: 1rem;
@@ -33,35 +39,57 @@
       display: block;
       margin-bottom: 0.5rem;
     }
-    .input-group input {
+    .input-group input, .input-group select {
       width: 100%;
-      padding: 0.5rem;
-      border-radius: 6px;
+      padding: 0.75rem;
+      border-radius: 8px;
       border: none;
+      outline: none;
+      background: #2a2a2a;
+      color: #fff;
     }
     .btn {
       width: 100%;
       background: gold;
       color: #000;
       font-weight: bold;
-      padding: 0.75rem;
+      padding: 0.9rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
+      margin-top: 0.5rem;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #ffd700d9;
     }
     .dashboard {
       text-align: center;
     }
     .ref-link {
       background: #333;
-      padding: 0.5rem;
+      padding: 0.7rem;
       border-radius: 6px;
+      margin-bottom: 0.5rem;
       word-wrap: break-word;
+    }
+    .copy-btn {
+      background: #444;
+      color: gold;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .copy-btn:hover {
+      background: gold;
+      color: #000;
     }
     .upi-box {
       margin-top: 1rem;
       padding: 1rem;
-      background: #333;
+      background: #222;
       border-radius: 8px;
     }
   </style>
@@ -70,6 +98,7 @@
   <div class="container">
     <h1>₹9 Referral Club</h1>
 
+    <!-- Join Form -->
     <div class="card" id="joinCard">
       <h2>Join Now</h2>
       <div class="input-group">
@@ -81,70 +110,67 @@
         <input type="text" id="refcode" placeholder="Ex: mrganesh" />
       </div>
       <div class="input-group">
-        <label for="txn">Payment Transaction ID</label>
-        <input type="text" id="txn" placeholder="Txn ID after ₹9 UPI payment" />
+        <label for="txn">Select Payment Method</label>
+        <select id="txn">
+          <option value="">-- Choose --</option>
+          <option value="upi">UPI (₹9)</option>
+          <option value="paytm">Paytm Wallet (₹9)</option>
+          <option value="gpay">Google Pay (₹9)</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="upi">Your UPI ID (for withdrawals)</label>
+        <input type="text" id="upi" placeholder="Ex: rajveer@upi" />
       </div>
       <button class="btn" onclick="registerUser()">Join for ₹9</button>
     </div>
 
+    <!-- Dashboard -->
     <div class="card dashboard" id="dashboard" style="display:none">
       <h2>Welcome, <span id="userName"></span></h2>
       <p>👥 Referrals: <span id="refCount">0</span></p>
       <p>💰 Total Earnings: <span id="earnings">₹0</span></p>
       <p>🏦 Wallet Balance: <span id="wallet">₹0</span></p>
       <p>🔗 Your Referral Link:</p>
-      <p class="ref-link">
-        <a href="#" id="refLink" target="_blank" style="color: gold; text-decoration: none;"></a>
-      </p>
+      <p class="ref-link" id="refLink"></p>
+      <button class="copy-btn" onclick="copyLink()">Copy Link</button>
       <button class="btn" id="withdrawBtn" onclick="withdrawMoney()">Withdraw ₹50</button>
       <div class="upi-box" id="upiBox" style="display: none;">
         <p>✅ Withdrawal Successful!</p>
-        <p>💸 Transferred to UPI: <strong>rajveer.in@fam</strong></p>
+        <p>💸 Transferred to: <strong id="upiTarget"></strong></p>
       </div>
     </div>
   </div>
 
   <script>
-    const validTxnIds = {
-      "txn123": { name: "ganesh", ref: "none" },
-      "abc999": { name: "raj", ref: "mrganesh" },
-      "ganesh001": { name: "shiv", ref: "raj" },
-      "121212121212": { name: "mrganesh", ref: "none" },
-    };
-
-    let referralCounts = {
-      "ganesh": 3,
-      "raj": 2,
-      "shiv": 1,
-      "mrganesh": 4,
-    };
-
+    let users = {};
+    let referralCounts = {};
     let loggedInUser = null;
 
     function registerUser() {
-      const nameInput = document.getElementById("name").value.trim();
-      const txnInput = document.getElementById("txn").value.trim();
-      const refInput = document.getElementById("refcode").value.trim() || "none";
+      const name = document.getElementById("name").value.trim();
+      const ref = document.getElementById("refcode").value.trim() || "none";
+      const upi = document.getElementById("upi").value.trim();
 
-      if (!nameInput || !txnInput) {
-        alert("Please fill all required fields!");
+      if (!name || !upi) {
+        alert("Please fill your name and UPI ID!");
         return;
       }
 
-      if (validTxnIds[txnInput]) {
-        const stored = validTxnIds[txnInput];
-        loggedInUser = stored.name;
-        showDashboard(stored.name);
+      if (users[name]) {
+        alert("User already registered!");
         return;
       }
 
-      validTxnIds[txnInput] = { name: nameInput, ref: refInput };
-      referralCounts[nameInput] = 0;
-      if (refInput !== "none" && referralCounts[refInput]) {
-        referralCounts[refInput]++;
+      users[name] = { upi: upi, ref: ref };
+      referralCounts[name] = 0;
+
+      if (ref !== "none" && referralCounts[ref] !== undefined) {
+        referralCounts[ref]++;
       }
-      loggedInUser = nameInput;
-      showDashboard(nameInput);
+
+      loggedInUser = name;
+      showDashboard(name);
     }
 
     function showDashboard(name) {
@@ -152,10 +178,8 @@
       document.getElementById("dashboard").style.display = "block";
       document.getElementById("userName").innerText = name;
 
-      const userRefLink = `https://yourdomain.com/join?ref=${encodeURIComponent(name.toLowerCase())}`;
-      const refLinkElem = document.getElementById("refLink");
-      refLinkElem.href = userRefLink;
-      refLinkElem.innerText = userRefLink;
+      const userRefLink = `https://yourdomain.com/join?ref=${encodeURIComponent(name)}`;
+      document.getElementById("refLink").innerText = userRefLink;
 
       const refs = referralCounts[name] || 0;
       const earnings = refs * 3;
@@ -165,8 +189,8 @@
       document.getElementById("earnings").innerText = `₹${earnings}`;
       document.getElementById("wallet").innerText = `₹${balance}`;
 
-      document.getElementById("withdrawBtn").style.display = balance >= 50 ? 'block' : 'none';
-      document.getElementById("upiBox").style.display = 'none';
+      document.getElementById("withdrawBtn").style.display = balance >= 50 ? "block" : "none";
+      document.getElementById("upiBox").style.display = "none";
     }
 
     function withdrawMoney() {
@@ -176,11 +200,18 @@
       if (balance < 50) {
         alert("Minimum ₹50 required to withdraw!");
       } else {
-        document.getElementById("upiBox").style.display = 'block';
-        document.getElementById("wallet").innerText = `₹0`;
+        document.getElementById("upiBox").style.display = "block";
+        document.getElementById("upiTarget").innerText = users[user].upi;
+        document.getElementById("wallet").innerText = "₹0";
         referralCounts[user] = 0;
         alert("Withdrawal of ₹" + balance + " sent to your UPI.");
       }
+    }
+
+    function copyLink() {
+      const link = document.getElementById("refLink").innerText;
+      navigator.clipboard.writeText(link);
+      alert("Referral link copied!");
     }
   </script>
 </body>
