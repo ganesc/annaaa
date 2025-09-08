@@ -2,217 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>₹9 Referral Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lampop – Magical Lamp ✨</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: #0e0e0e;
-      color: #fff;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    h1 {
-      color: gold;
+      padding: 0;
+      background: linear-gradient(135deg, #fff7e6, #ffe6f0);
+      color: #333;
       text-align: center;
-      margin-bottom: 2rem;
     }
-    .card {
-      background: #1b1b1b;
-      padding: 1.5rem;
-      border-radius: 16px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+    header {
+      background: #ffb347;
+      padding: 20px;
+      border-bottom: 4px solid #ff6f61;
     }
-    h2 {
-      margin-bottom: 1rem;
-      color: gold;
-    }
-    .input-group {
-      margin-bottom: 1rem;
-    }
-    .input-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .input-group input, .input-group select {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      background: #2a2a2a;
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
       color: #fff;
     }
-    .btn {
+    header p {
+      margin: 5px 0 0;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .product {
+      margin: 30px auto;
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .product img {
       width: 100%;
-      background: gold;
-      color: #000;
+      border-radius: 15px;
+    }
+    .product h2 {
+      font-size: 1.8rem;
+      margin: 15px 0 10px;
+      color: #ff6f61;
+    }
+    .product p {
+      font-size: 1rem;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .price {
+      font-size: 1.5rem;
       font-weight: bold;
-      padding: 0.9rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 0.5rem;
+      margin: 15px 0;
+      color: #333;
+    }
+    .buy-btn {
+      display: inline-block;
+      background: #ff6f61;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.1rem;
       transition: 0.3s;
     }
-    .btn:hover {
-      background: #ffd700d9;
+    .buy-btn:hover {
+      background: #ff3b2e;
     }
-    .dashboard {
-      text-align: center;
-    }
-    .ref-link {
-      background: #333;
-      padding: 0.7rem;
-      border-radius: 6px;
-      margin-bottom: 0.5rem;
-      word-wrap: break-word;
-    }
-    .copy-btn {
-      background: #444;
-      color: gold;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .copy-btn:hover {
-      background: gold;
-      color: #000;
-    }
-    .upi-box {
-      margin-top: 1rem;
-      padding: 1rem;
-      background: #222;
-      border-radius: 8px;
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      font-size: 0.9rem;
+      background: #ffb347;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>₹9 Referral Club</h1>
+  <header>
+    <h1>🌟 Lampop – Magical Lamp ✨</h1>
+    <p>Light up your home with love 💖, joy 😊, and style 🌸</p>
+  </header>
 
-    <!-- Join Form -->
-    <div class="card" id="joinCard">
-      <h2>Join Now</h2>
-      <div class="input-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" placeholder="Enter your name" />
-      </div>
-      <div class="input-group">
-        <label for="refcode">Referral Code (Optional)</label>
-        <input type="text" id="refcode" placeholder="Ex: mrganesh" />
-      </div>
-      <div class="input-group">
-        <label for="txn">Select Payment Method</label>
-        <select id="txn">
-          <option value="">-- Choose --</option>
-          <option value="upi">UPI (₹9)</option>
-          <option value="paytm">Paytm Wallet (₹9)</option>
-          <option value="gpay">Google Pay (₹9)</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="upi">Your UPI ID (for withdrawals)</label>
-        <input type="text" id="upi" placeholder="Ex: rajveer@upi" />
-      </div>
-      <button class="btn" onclick="registerUser()">Join for ₹9</button>
-    </div>
+  <section class="product">
+    <img src="https://images.unsplash.com/photo-1603898037225-2a5f56a59d15?auto=format&fit=crop&w=800&q=80" alt="Lampop Magical Lamp" />
+    <h2>Magical Lamp for Kids & Family 🏡</h2>
+    <p>
+      🎉 Bring happiness to your room with this beautiful Lampop lamp.  
+      🌈 Perfect for kids, parents & gifts 🎁  
+      💡 Soft glow that makes nights magical ✨
+    </p>
+    <div class="price">Only ₹499 🔥</div>
+    <a class="buy-btn" href="https://wa.me/918888888888?text=Hi%20I%20want%20to%20order%20Lampop%20Lamp%20✨">🛒 Buy Now</a>
+  </section>
 
-    <!-- Dashboard -->
-    <div class="card dashboard" id="dashboard" style="display:none">
-      <h2>Welcome, <span id="userName"></span></h2>
-      <p>👥 Referrals: <span id="refCount">0</span></p>
-      <p>💰 Total Earnings: <span id="earnings">₹0</span></p>
-      <p>🏦 Wallet Balance: <span id="wallet">₹0</span></p>
-      <p>🔗 Your Referral Link:</p>
-      <p class="ref-link" id="refLink"></p>
-      <button class="copy-btn" onclick="copyLink()">Copy Link</button>
-      <button class="btn" id="withdrawBtn" onclick="withdrawMoney()">Withdraw ₹50</button>
-      <div class="upi-box" id="upiBox" style="display: none;">
-        <p>✅ Withdrawal Successful!</p>
-        <p>💸 Transferred to: <strong id="upiTarget"></strong></p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let users = {};
-    let referralCounts = {};
-    let loggedInUser = null;
-
-    function registerUser() {
-      const name = document.getElementById("name").value.trim();
-      const ref = document.getElementById("refcode").value.trim() || "none";
-      const upi = document.getElementById("upi").value.trim();
-
-      if (!name || !upi) {
-        alert("Please fill your name and UPI ID!");
-        return;
-      }
-
-      if (users[name]) {
-        alert("User already registered!");
-        return;
-      }
-
-      users[name] = { upi: upi, ref: ref };
-      referralCounts[name] = 0;
-
-      if (ref !== "none" && referralCounts[ref] !== undefined) {
-        referralCounts[ref]++;
-      }
-
-      loggedInUser = name;
-      showDashboard(name);
-    }
-
-    function showDashboard(name) {
-      document.getElementById("joinCard").style.display = "none";
-      document.getElementById("dashboard").style.display = "block";
-      document.getElementById("userName").innerText = name;
-
-      const userRefLink = `https://yourdomain.com/join?ref=${encodeURIComponent(name)}`;
-      document.getElementById("refLink").innerText = userRefLink;
-
-      const refs = referralCounts[name] || 0;
-      const earnings = refs * 3;
-      const balance = earnings;
-
-      document.getElementById("refCount").innerText = refs;
-      document.getElementById("earnings").innerText = `₹${earnings}`;
-      document.getElementById("wallet").innerText = `₹${balance}`;
-
-      document.getElementById("withdrawBtn").style.display = balance >= 50 ? "block" : "none";
-      document.getElementById("upiBox").style.display = "none";
-    }
-
-    function withdrawMoney() {
-      const user = loggedInUser;
-      const balance = (referralCounts[user] || 0) * 3;
-
-      if (balance < 50) {
-        alert("Minimum ₹50 required to withdraw!");
-      } else {
-        document.getElementById("upiBox").style.display = "block";
-        document.getElementById("upiTarget").innerText = users[user].upi;
-        document.getElementById("wallet").innerText = "₹0";
-        referralCounts[user] = 0;
-        alert("Withdrawal of ₹" + balance + " sent to your UPI.");
-      }
-    }
-
-    function copyLink() {
-      const link = document.getElementById("refLink").innerText;
-      navigator.clipboard.writeText(link);
-      alert("Referral link copied!");
-    }
-  </script>
+  <footer>
+    © 2025 Lampop | Made with ❤️ for Families
+  </footer>
 </body>
 </html>
